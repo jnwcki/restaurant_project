@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             name='Menu',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.Item')),
+                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='auth.Item')),
             ],
         ),
         migrations.CreateModel(
@@ -69,16 +69,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='restaurant',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.Restaurant'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='auth.Restaurant'),
         ),
         migrations.AddField(
             model_name='order',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.UserProfile'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='auth.UserProfile'),
         ),
         migrations.AddField(
             model_name='menu',
             name='restaurant',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='main.Restaurant'),
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='auth.Restaurant'),
         ),
     ]
