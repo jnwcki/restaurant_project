@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
 from .forms import NewUserCreationForm
 
-from .models import Restaurant
+from .models import Restaurant, Order
 
 
 class Signup(CreateView):
@@ -28,4 +28,11 @@ class RestaurantListView(ListView):
 
 class RestaurantDetailView(DetailView):
     model = Restaurant
+
+
+class OrderHistoryView(ListView):
+    model = Order
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
 
