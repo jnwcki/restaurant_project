@@ -4,7 +4,7 @@
 {% for restaurant in object_list %}
 <table class="table table-hover">
 <th>Restaurant Name</th>
-<tr><td>{{ restaurant.name }}<td></tr>
+<tr><td><a href="{% url 'restaurant_detail_view' restaurant.pk }">{{ restaurant.name }}</a><td></tr>
 </table>
 {% endfor %}
 {% endblock %}
