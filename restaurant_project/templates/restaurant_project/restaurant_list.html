@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %} Restaurant List {% endblock %}
+{% block content %}
+{% for restaurant in object_list %}
+<table class="table table-hover">
+<th>Restaurant Name</th>
+<tr><td>{{ restaurant.name }}<td></tr>
+</table>
+{% endfor %}
+{% endblock %}
