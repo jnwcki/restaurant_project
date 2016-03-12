@@ -7,20 +7,8 @@ class UserProfile(models.Model):
     number = models.CharField(max_length=15)
     city = models.CharField(max_length=128)
     zip_code = models.IntegerField()
-    street_namestreet_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
     allergies = models.TextField()
-
-
-class Restaurant(models.Model):
-    name = models.CharField(max_length=255)
-    cuisine = models.CharField(max_length=255)
-    hours = models.TextField()
-    number = models.CharField(max_length=12)
-    address = models.CharField(max_length=225)
-    image = models.ImageField(upload_to="img", blank=True, null=True)
-
-    def __str__(self):
-        return self.name
 
 
 class Item(models.Model):
@@ -31,12 +19,25 @@ class Item(models.Model):
 
 
 class Menu(models.Model):
-    restaurant = models.OneToOneField(Restaurant)
     item = models.ForeignKey(Item)
+
+
+class Restaurant(models.Model):
+    name = models.CharField(max_length=255)
+    menu = models.ForeignKey(Menu, null=True)
+    cuisine = models.CharField(max_length=255)
+    hours = models.TextField()
+    number = models.CharField(max_length=12)
+    address = models.CharField(max_length=225)
+    image = models.ImageField(upload_to="img", blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
     restaurant = models.ForeignKey(Restaurant)
+    items = models.ManyToManyField(Item)
     user = models.ForeignKey(UserProfile)
     date = models.DateTimeField(auto_now_add=True)
     fulfilled = models.BooleanField(default=False)
