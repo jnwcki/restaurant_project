@@ -9,9 +9,12 @@
 <body>
     <div class="container">
         <ul class="nav nav-pills">
-          <li role="presentation"><a href="#">Welcome</a></li>
-          <li role="presentation"><a href="#">Restaurants</a></li>
-          <li role="presentation"><a href="#">Mess</a></li>
+            {% if request.user.is_authenticated %}
+            {% else %}
+              <li role="presentation"><a href="#">Welcome</a></li>
+              <li role="presentation"><a href="#">Restaurants</a></li>
+              <li role="presentation"><a href="#">Mess</a></li>
+            {% endif %}
         </ul>
         {% block content %}
         {% endblock %}
