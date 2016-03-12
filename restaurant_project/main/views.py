@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
-
+from django.views.generic import ListView, DetailView
 from .forms import NewUserCreationForm
+
+from main.models import Restaurant
 
 
 class Signup(CreateView):
@@ -18,3 +20,11 @@ class Signup(CreateView):
         new_user.last_name = form.cleaned_data['last_name']
         new_user.save()
         return super().form_valid(form)
+
+
+class RestaurantListView(ListView):
+    model = Restaurant
+
+
+class RestaurantDetailView(DetailView):
+    model = Restaurant
