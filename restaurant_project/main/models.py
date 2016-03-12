@@ -17,13 +17,21 @@ class Item(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.ImageField(upload_to='img', blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Menu(models.Model):
-    item = models.ForeignKey(Item)
+    name = models.CharField(max_length=255)
+    item = models.ManyToManyField(Item)
+
+    def __str__(self):
+        return self.name
 
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
+    owner = models.ForeignKey(User, null=True)
     menu = models.ForeignKey(Menu, null=True)
     cuisine = models.CharField(max_length=255)
     hours = models.TextField()
