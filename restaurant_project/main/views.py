@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
 from .forms import NewUserCreationForm
 
-from main.models import Restaurant
+from .models import Restaurant
 
 
 class Signup(CreateView):
