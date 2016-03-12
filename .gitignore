@@ -1,0 +1,6 @@
+restaurant_env/
+*.pyc
+.idea/
+*__pycache__
+*.DS_Store
+restaurant_project/db.sqlite3
