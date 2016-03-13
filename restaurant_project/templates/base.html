@@ -10,6 +10,8 @@
     <div class="container">
         <ul class="nav nav-pills">
             {% if request.user.is_authenticated %}
+              <li role="presentation"><a href="{% url 'restaurant_list_view' %}">Restaurants</a></li>
+              <li role="presentation"><a href="{% url 'order_history_view' %}">Restaurants</a></li>
               <li role="presentation"><a href="{% url 'logout' %}">{{ user.request }}, logout</a></li>
             {% else %}
               <li role="presentation"><a href="#">Welcome</a></li>
