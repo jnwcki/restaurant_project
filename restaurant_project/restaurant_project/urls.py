@@ -36,4 +36,5 @@ urlpatterns = [
     url(r'^$', MainView.as_view(), name="main_view"),
     url(r'^signup/consumer/$', views.SignupConsumer.as_view(), name='signup'),
     url(r'^signup/manager/$', views.SignupManager.as_view(), name='signup_manager'),
+    url(r'^update_profile/(?P<pk>\d+)$', views.UserProfileUpdate.as_view(), name='update_profile_view'),
 ]

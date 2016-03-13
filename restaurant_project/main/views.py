@@ -45,6 +45,11 @@ class SignupManager(CreateView):
         return super().form_valid(form)
 
 
+class UserProfileUpdate(UpdateView):
+    model = UserProfile
+    fields = ('number', 'city', 'zip_code', 'address', 'allergies')
+
+
 class RestaurantListView(ListView):
     model = Restaurant
 
