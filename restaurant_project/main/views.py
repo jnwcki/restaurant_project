@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.core.urlresolvers import reverse
 
 from main.models import Restaurant, Order, Item
-from main.forms import NewUserCreationForm
+from main.forms import NewUserCreationForm, NewManagerCreationForm
 
 
 class SignupConsumer(CreateView):
