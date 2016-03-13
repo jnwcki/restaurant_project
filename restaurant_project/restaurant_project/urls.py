@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^logout', auth_views.logout_then_login, name='logout'),
     url(r'^restaurants/$', views.RestaurantListView.as_view(), name='restaurant_list_view'),
     url(r'^restaurant/(?P<pk>\d+)$', views.RestaurantDetailView.as_view(), name='restaurant_detail_view'),
-    url(r'^order_history/$', views.OrderHistoryView.as_view(), name='order_history_view')
+    url(r'^order_history/$', views.OrderHistoryView.as_view(), name='order_history_view'),
+    url(r'^restaurant/(?P<pk>\d+)/create_order/$', views.OrderCreateView.as_view(), name='order_create_view'),
 ]
