@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from main.forms import NewUserCreationForm
 from django.core.urlresolvers import reverse
 
@@ -73,3 +73,41 @@ class OrderUpdateView(UpdateView):
 
 class ItemDetailView(DetailView):
     model = Item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class MainView(TemplateView):
+    template_name = 'index.html'
