@@ -36,3 +36,14 @@ class OrderHistoryView(ListView):
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
 
+
+class OrderCreateView(CreateView):
+    model = Order
+
+    def form_valid(self, form):
+        order_object = form.save(commit=False)
+        order_object.restaurant = Restaurant.objects.get(pk=self.kwargs.get('pk'))
+        order_object.user = self.request.user.userprofile
+        order_object.total_price = sum([item.price for item in order_object.items.all()])
+        return super().form_valid(form)
+
