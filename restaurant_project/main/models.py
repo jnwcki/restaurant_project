@@ -2,15 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    number = models.CharField(max_length=15)
-    city = models.CharField(max_length=128)
-    zip_code = models.IntegerField()
-    address = models.CharField(max_length=255)
-    allergies = models.CharField(max_length=512)
-
-
 class Item(models.Model):
     name = models.CharField(max_length=100)
     owner = models.ForeignKey(User, null=True)
@@ -43,6 +34,19 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    owner = models.OneToOneField(Restaurant, null=True)
+    number = models.CharField(max_length=15)
+    city = models.CharField(max_length=128)
+    zip_code = models.IntegerField()
+    address = models.CharField(max_length=255)
+    allergies = models.CharField(max_length=512)
+
+    def __str__(self):
+        return "{}".format(self.user.username)
 
 
 class Order(models.Model):
