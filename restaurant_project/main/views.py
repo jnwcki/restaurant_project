@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
 from main.forms import NewUserCreationForm
+from django.core.urlresolvers import reverse
 
 from .models import Restaurant, Order
 
@@ -47,4 +48,13 @@ class OrderCreateView(CreateView):
         order_object.user = self.request.user.userprofile
         order_object.total_price = sum([item.price for item in order_object.items.all()])
         return super().form_valid(form)
+
+    def get_success_url(self):
+        order = Order.objects.filter(user=self.request.user.userprofile).last()
+        return reverse('order_detail_view', args=(order.pk, ))
+
+
+class OrderDetailView(DetailView):
+    model = Order
+
 
