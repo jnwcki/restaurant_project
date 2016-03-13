@@ -35,10 +35,10 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(User, null=True)
     menu = models.ForeignKey(Menu, null=True)
-    cuisine = models.CharField(max_length=255)
-    hours = models.TextField()
-    number = models.CharField(max_length=12)
-    address = models.CharField(max_length=225)
+    cuisine = models.CharField(max_length=255, null=True)
+    hours = models.TextField(null=True)
+    number = models.CharField(max_length=12, null=True)
+    address = models.CharField(max_length=225, null=True)
     image = models.ImageField(upload_to="img", blank=True, null=True)
 
     def __str__(self):

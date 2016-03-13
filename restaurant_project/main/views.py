@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView, TemplateView
 from django.core.urlresolvers import reverse
 
-from main.models import Restaurant, Order, Item
+from main.models import Restaurant, Order, Item, UserProfile
 from main.forms import NewUserCreationForm, NewManagerCreationForm
 
 
@@ -16,6 +16,11 @@ class SignupConsumer(CreateView):
         new_user.user = new_user
         new_user.first_name = form.cleaned_data['first_name']
         new_user.last_name = form.cleaned_data['last_name']
+        new_profile = UserProfile.objects.create(user=new_user, number=form.cleaned_data['number'],
+                                                 city=form.cleaned_data['city'],
+                                                 zip_code=form.cleaned_data['zip_code'],
+                                                 address=form.cleaned_data['address'],
+                                                 allergies=form.cleaned_data['allergies'])
         new_user.save()
         return super().form_valid(form)
 
@@ -26,6 +31,7 @@ class SignupConsumer(CreateView):
 class SignupManager(CreateView):
     model = User
     form_class = NewManagerCreationForm
+    template_name = 'auth/manager_form.html'
 
     def form_valid(self, form):
         new_user = form.save(commit=False)
@@ -33,6 +39,8 @@ class SignupManager(CreateView):
         new_user.first_name = form.cleaned_data['first_name']
         new_user.last_name = form.cleaned_data['last_name']
         new_user.is_staff = True
+        new_restaurant = Restaurant(name=form.cleaned_data['name'])
+        new_restaurant.save()
         new_user.save()
         return super().form_valid(form)
 
