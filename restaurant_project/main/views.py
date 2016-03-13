@@ -50,6 +50,7 @@ class OrderCreateView(CreateView):
         order_object.restaurant = Restaurant.objects.get(pk=self.kwargs.get('pk'))
         order_object.user = self.request.user.userprofile
         order_object.total_price = sum([item.price for item in order_object.items.all()])
+        order_object.save()
         return super().form_valid(form)
 
     def get_success_url(self):
