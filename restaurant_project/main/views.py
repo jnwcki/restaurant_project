@@ -7,13 +7,11 @@ from main.models import Restaurant, Order, Item
 from main.forms import NewUserCreationForm
 
 
-class Signup(CreateView):
-    """Allow a user to signup"""
+class SignupConsumer(CreateView):
     model = User
     form_class = NewUserCreationForm
 
     def form_valid(self, form):
-        """Validate the form"""
         new_user = form.save(commit=False)
         new_user.user = new_user
         new_user.first_name = form.cleaned_data['first_name']
@@ -23,6 +21,20 @@ class Signup(CreateView):
 
     def get_success_url(self):
         return reverse('login')
+
+
+class SignupManager(CreateView):
+    model = User
+    form_class = NewUserCreationForm
+
+    def form_valid(self, form):
+        new_user = form.save(commit=False)
+        new_user.user = new_user
+        new_user.first_name = form.cleaned_data['first_name']
+        new_user.last_name = form.cleaned_data['last_name']
+        new_user.is_staff = True
+        new_user.save()
+        return super().form_valid(form)
 
 
 class RestaurantListView(ListView):

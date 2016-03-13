@@ -10,3 +10,10 @@ class NewUserCreationForm(UserCreationForm):
     zip_code = forms.IntegerField()
     address = forms.CharField()
     allergies = forms.CharField()
+
+
+class NewManagerCreationForm(UserCreationForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    name = forms.CharField()
+
