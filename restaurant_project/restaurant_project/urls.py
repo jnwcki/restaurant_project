@@ -23,8 +23,6 @@ from main.views import MainView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
-    url(r'^signup/consumer/$', views.SignupConsumer.as_view(), name='signup_consumer'),
-    url(r'^signup/manager/$', views.SignupManager.as_view(), name='signup_manager'),
     url(r'^login', auth_views.login, name='login'),
     url(r'^logout', auth_views.logout_then_login, name='logout'),
     url(r'^restaurants/$', views.RestaurantListView.as_view(), name='restaurant_list_view'),
@@ -34,5 +32,7 @@ urlpatterns = [
     url(r'^order_summary/(?P<pk>\d+)$', views.OrderDetailView.as_view(), name='order_detail_view'),
     url(r'^order/(?P<pk>\d+)/update/$', views.OrderUpdateView.as_view(), name='order_update_view'),
     url(r'^item/(?P<pk>\d+)/$', views.ItemDetailView.as_view(), name='item'),
-    url(r'^$', MainView.as_view(), name="main_view")
+    url(r'^$', MainView.as_view(), name="main_view"),
+    url(r'^signup/consumer/$', views.SignupConsumer.as_view(), name='signup'),
+    url(r'^signup/manager/$', views.SignupManager.as_view(), name='signup_manager'),
 ]

@@ -25,7 +25,7 @@ class SignupConsumer(CreateView):
 
 class SignupManager(CreateView):
     model = User
-    form_class = NewUserCreationForm
+    form_class = NewManagerCreationForm
 
     def form_valid(self, form):
         new_user = form.save(commit=False)
