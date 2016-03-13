@@ -50,7 +50,7 @@ class OrderHistoryView(ListView):
     template_name = 'main/orderhistory_list.html'
 
     def get_queryset(self):
-        return self.model.objects.filter(user=self.request.user.userprofile)
+        return self.model.objects.filter(user=self.request.user.userprofile).order_by('-date')
 
 
 class OrderCreateView(CreateView):
