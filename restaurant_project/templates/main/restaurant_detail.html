@@ -2,22 +2,23 @@
 {% block title %} {{ object.name }} {% endblock %}
 {% block content %}
 {% if object.image %}
-  <td>{{ object.image }}</td>
+  <div>{{ object.image }}</div>
 {% endif %}
 <br><br>
 <table class="table table-hover">
+  <th>Restaurant Name</th><th>Cuisine Type</th>
+  <th>Hours</th><th>Phone Number</th>
+  <th>Address</th>
 {% for menu in menus %}
-<th>Restaurant Name</th><th>Cuisine Type</th>
-<th>Hours</th><th>Phone Number</th>
-<th>Address</th>
 <tr><td>{{ object.name }}</td>
   <td>{{ object.cuisine }}</td>
   <td>{{ object.hours }}</td>
   <td>{{ object.number }}</td>
   <td>{{ object.address }}</td>
 </tr>
-</table>
 {% endfor %}
+</table>
+
 
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Menu</button>
 
