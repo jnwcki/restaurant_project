@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=128)
     zip_code = models.IntegerField()
     address = models.CharField(max_length=255)
-    allergies = models.TextField()
+    allergies = models.CharField(max_length=512)
 
 
 class Item(models.Model):
@@ -52,3 +52,5 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     fulfilled = models.BooleanField(default=False)
     total_price = models.DecimalField(max_digits=5, decimal_places=2)
+    notes = models.CharField(max_length=512)
+    allergies = models.CharField(max_length=512)
