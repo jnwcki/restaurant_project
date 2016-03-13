@@ -49,6 +49,9 @@ class UserProfileUpdate(UpdateView):
     model = UserProfile
     fields = ('number', 'city', 'zip_code', 'address', 'allergies')
 
+    def get_success_url(self):
+        return reverse('order_history_view')
+
 
 class RestaurantListView(ListView):
     model = Restaurant
