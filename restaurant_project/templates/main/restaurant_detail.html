@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block title %} {{ object.name }} {% endblock %}
 {% block content %}
+
+<button type="button" value="Order Here!"><a href="{% url 'order_create_view' object.pk %}"></a></button>
+
 {% if object.image %}
   <td>{{ object.image }}</td>
 {% endif %}
