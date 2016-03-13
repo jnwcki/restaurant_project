@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.views.generic.edit import CreateView
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView, DetailView
 from main.forms import NewUserCreationForm
 from django.core.urlresolvers import reverse
 
@@ -21,6 +21,9 @@ class Signup(CreateView):
         new_user.last_name = form.cleaned_data['last_name']
         new_user.save()
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('login_view')
 
 
 class RestaurantListView(ListView):
@@ -57,4 +60,13 @@ class OrderCreateView(CreateView):
 class OrderDetailView(DetailView):
     model = Order
 
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    fields = ('items', )
+    template_name_suffix = '_update_form'
+
+    def get_success_url(self):
+        order = Order.objects.filter(user=self.request.user.userprofile).last()
+        return reverse('order_detail_view', args=(order.pk, ))
 

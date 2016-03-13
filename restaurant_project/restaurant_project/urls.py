@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^order_history/$', views.OrderHistoryView.as_view(), name='order_history_view'),
     url(r'^restaurant/(?P<pk>\d+)/create_order/$', views.OrderCreateView.as_view(), name='order_create_view'),
     url(r'^order_summary/(?P<pk>\d+)$', views.OrderDetailView.as_view(), name='order_detail_view'),
+    url(r'^order/(?P<pk>\d+)/update/$', views.OrderUpdateView.as_view(), name='order_update_view'),
 ]
