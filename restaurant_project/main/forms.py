@@ -8,5 +8,5 @@ class NewUserCreationForm(UserCreationForm):
     number = forms.CharField()
     city = forms.CharField()
     zip_code = forms.IntegerField()
-    street_namestreet_name = forms.CharField()
+    address = forms.CharField()
     allergies = forms.CharField()
