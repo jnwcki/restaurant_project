@@ -47,9 +47,10 @@ class RestaurantDetailView(DetailView):
 
 class OrderHistoryView(ListView):
     model = Order
+    template_name = 'main/orderhistory_list.html'
 
     def get_queryset(self):
-        return self.model.objects.filter(user=self.request.user)
+        return self.model.objects.filter(user=self.request.user.userprofile)
 
 
 class OrderCreateView(CreateView):

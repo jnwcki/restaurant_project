@@ -3,7 +3,7 @@
 {% block content %}
 <form class="" action="" method="post">
 {% csrf_token %}
-  {{ form.as_p }}
+  {{ form | as_bootstrap }}
   <br><br>
 <h5>Once your order is placed, you have committed to the purchase.</h5>
   <input type="Submit" value="Place Order">
