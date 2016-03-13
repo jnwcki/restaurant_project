@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} Your Order {% endblock %}
+{% block content %}
+<table class="table table-hover">
+<th>Restaurant</th><th>Items</th>
+<th>Date/Time</th><th>Total Price</th>
+<tr><td>{{ object.restaurant }}</td>
+  <td>{{ object.items }}</td>
+  <td>{{ object.date }}</td>
+  <td>{{ object.total_price }}</td></tr>
+</table>
+{{object.menu}}
+<button type="submit"><a href="{% url 'order_create_view' object.pk %}">Order Here!</a></button>
+{% endblock %}
