@@ -39,6 +39,7 @@ class OrderHistoryView(ListView):
 
 class OrderCreateView(CreateView):
     model = Order
+    fields = ('items', )
 
     def form_valid(self, form):
         order_object = form.save(commit=False)
