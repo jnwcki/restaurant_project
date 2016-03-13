@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from main.forms import NewUserCreationForm
 
 from .models import Restaurant, Order
