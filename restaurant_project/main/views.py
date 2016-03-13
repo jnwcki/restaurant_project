@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from main.forms import NewUserCreationForm
 
 from .models import Restaurant, Order
@@ -47,30 +47,4 @@ class OrderCreateView(CreateView):
         order_object.user = self.request.user.userprofile
         order_object.total_price = sum([item.price for item in order_object.items.all()])
         return super().form_valid(form)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
