@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Your Order {% endblock %}
+{% block content %}
+<br>
+<h3>Order Details</h3>
+<br>
+<table class="table table-hover">
+<th>Restaurant</th>
+<th>Total Price</th><th>Date/Time</th>
+<th>Notes</th>
+<tr>
+<td>{{ object.restaurant}}</td>
+<td>{{ object.total_price}}</td>
+<td>{{ object.date}}</td>
+<td>{{ object.notes}}</td></tr>
+</table>
+
+<br>
+<h3>Items</h3>
+<br>
+<table class="table table-hover">
+  <th>Item</th>
+  <th>Item Price</th>
+{% for item in object.items.all %}
+<tr>
+<td>{{ item }}</td>
+<td>{{ item.price }}</td>
+</tr>
+{% endfor %}
+</table>
+<button type="submit" class="btn btn-default"><a href="{% url 'order_update_view' object.pk %}">Edit Your Order Here</a></button>
+
+{% endblock %}
