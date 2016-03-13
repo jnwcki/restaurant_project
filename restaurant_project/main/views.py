@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from main.forms import NewUserCreationForm
 from django.core.urlresolvers import reverse
 
-from .models import Restaurant, Order
+from .models import Restaurant, Order, Menu, Item
 
 
 class Signup(CreateView):
@@ -70,3 +70,6 @@ class OrderUpdateView(UpdateView):
         order = Order.objects.filter(user=self.request.user.userprofile).last()
         return reverse('order_detail_view', args=(order.pk, ))
 
+
+class ItemDetailView(DetailView):
+    model = Item
