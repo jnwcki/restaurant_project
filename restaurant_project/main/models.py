@@ -53,4 +53,3 @@ class Order(models.Model):
     fulfilled = models.BooleanField(default=False)
     total_price = models.DecimalField(max_digits=5, decimal_places=2)
     notes = models.CharField(max_length=512)
-    allergies = models.CharField(max_length=512)

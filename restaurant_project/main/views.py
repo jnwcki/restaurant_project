@@ -43,7 +43,7 @@ class OrderHistoryView(ListView):
 
 class OrderCreateView(CreateView):
     model = Order
-    fields = ('items', )
+    fields = ('items', 'notes')
 
     def form_valid(self, form):
         order_object = form.save(commit=False)
@@ -63,7 +63,7 @@ class OrderDetailView(DetailView):
 
 class OrderUpdateView(UpdateView):
     model = Order
-    fields = ('items', )
+    fields = ('items', 'notes')
     template_name_suffix = '_update_form'
 
     def get_success_url(self):
