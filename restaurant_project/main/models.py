@@ -13,6 +13,7 @@ class UserProfile(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
+    owner = models.ForeignKey(User, null=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.ImageField(upload_to='img', blank=True, null=True)
@@ -24,6 +25,7 @@ class Item(models.Model):
 class Menu(models.Model):
     name = models.CharField(max_length=255)
     item = models.ManyToManyField(Item)
+    owner = models.ForeignKey(User, null=True)
 
     def __str__(self):
         return self.name
