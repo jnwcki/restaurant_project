@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from main import views
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
+
+from main.views import MainView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
@@ -26,8 +29,9 @@ urlpatterns = [
     url(r'^restaurants/$', views.RestaurantListView.as_view(), name='restaurant_list_view'),
     url(r'^restaurant/(?P<pk>\d+)$', views.RestaurantDetailView.as_view(), name='restaurant_detail_view'),
     url(r'^order_history/$', views.OrderHistoryView.as_view(), name='order_history_view'),
-    url(r'^restaurant/(?P<pk>\d+)/create_order/$', views.OrderCreateView.as_view(), name='order_create_view'),
+    url(r'^restaurant/(?P<pk>\d+)/create_order/$', login_required(views.OrderCreateView.as_view()), name='order_create_view'),
     url(r'^order_summary/(?P<pk>\d+)$', views.OrderDetailView.as_view(), name='order_detail_view'),
     url(r'^order/(?P<pk>\d+)/update/$', views.OrderUpdateView.as_view(), name='order_update_view'),
     url(r'^item/(?P<pk>\d+)/$', views.ItemDetailView.as_view(), name='item'),
+    url(r'^$', MainView.as_view(), name="main_view")
 ]

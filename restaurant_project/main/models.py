@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    number = models.CharField(max_length=15)
+    city = models.CharField(max_length=128)
+    zip_code = models.IntegerField()
+    address = models.CharField(max_length=255)
+    allergies = models.CharField(max_length=512, blank=True, null=True)
+
+
 class Item(models.Model):
     name = models.CharField(max_length=100)
     owner = models.ForeignKey(User, null=True)
@@ -55,5 +64,5 @@ class Order(models.Model):
     user = models.ForeignKey(UserProfile)
     date = models.DateTimeField(auto_now_add=True)
     fulfilled = models.BooleanField(default=False)
-    total_price = models.DecimalField(max_digits=5, decimal_places=2)
-    notes = models.CharField(max_length=512)
+    total_price = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    notes = models.CharField(max_length=512, blank=True, null=True)
