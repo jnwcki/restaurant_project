@@ -19,6 +19,8 @@ from main import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
+from main.views import MainView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^signup', views.Signup.as_view(), name='signup'),
@@ -31,4 +33,5 @@ urlpatterns = [
     url(r'^order_summary/(?P<pk>\d+)$', views.OrderDetailView.as_view(), name='order_detail_view'),
     url(r'^order/(?P<pk>\d+)/update/$', views.OrderUpdateView.as_view(), name='order_update_view'),
     url(r'^item/(?P<pk>\d+)/$', views.ItemDetailView.as_view(), name='item'),
+    url(r'^$', MainView.as_view(), name="main_view")
 ]
