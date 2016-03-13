@@ -4,8 +4,9 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView, TemplateView
 from main.forms import NewUserCreationForm
 from django.core.urlresolvers import reverse
+from django.db.models import Sum
 
-from .models import Restaurant, Order, Menu, Item
+from main.models import Restaurant, Order, Menu, Item
 
 
 class Signup(CreateView):
@@ -50,8 +51,11 @@ class OrderCreateView(CreateView):
         order_object.restaurant = Restaurant.objects.get(pk=self.kwargs.get('pk'))
         order_object.user = self.request.user.userprofile
         order_object.save()
-        order_object.total_price = sum([item.price for item in order_object.items.all()])
-        order_object.save()
+        order_items = form.cleaned_data['items']
+        for item in order_items:
+            order_object.items.add(item)
+        total_price = sum([item.price for item in order_object.items.all()])
+        order_object.total_price = total_price
         return super().form_valid(form)
 
     def get_success_url(self):
