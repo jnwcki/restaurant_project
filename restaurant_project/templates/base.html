@@ -14,7 +14,7 @@
               <li role="presentation"><a href="{% url 'order_history_view' %}">Order History</a></li>
               <li role="presentation"><a href="{% url 'logout' %}">{{ request.user }}, logout</a></li>
             {% else %}
-              <li role="presentation"><a href="#">Welcome</a></li>
+              <li role="presentation"><a href="{% url 'main_view' %}">Welcome</a></li>
               <li role="presentation"><a href="{% url 'restaurant_list_view' %}">Restaurants</a></li>
               <li role="presentation"><a href="{% url 'signup' %}">Sign Up</a></li>
               <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
