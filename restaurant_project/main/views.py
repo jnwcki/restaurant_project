@@ -39,8 +39,8 @@ class SignupManager(CreateView):
         new_user.first_name = form.cleaned_data['first_name']
         new_user.last_name = form.cleaned_data['last_name']
         new_user.is_staff = True
-        new_restaurant = Restaurant(name=form.cleaned_data['name'])
-        new_restaurant.save()
+        new_restaurant = Restaurant.objects.create(name=form.cleaned_data['name'])
+        new_profile = UserProfile.objects.create(user=new_user)
         new_user.save()
         return super().form_valid(form)
 
