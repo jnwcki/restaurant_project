@@ -82,6 +82,11 @@ class OrderCreateView(CreateView):
         return reverse('order_detail_view', args=(order.pk, ))
 
 
+class OrderConfirmationView(DetailView):
+    model = Order
+    template_name = 'main/order_confirmation.html'
+
+
 class OrderDetailView(DetailView):
     model = Order
 
