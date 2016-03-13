@@ -48,29 +48,3 @@ class OrderCreateView(CreateView):
         order_object.total_price = sum([item.price for item in order_object.items.all()])
         return super().form_valid(form)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
