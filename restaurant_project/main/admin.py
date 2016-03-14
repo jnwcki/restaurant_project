@@ -9,7 +9,7 @@ admin.site.register(UserProfile)
 @admin.register(Restaurant)
 class RestaurantAdmin(admin.ModelAdmin):
     exclude = ('owner',)
-    list_display = ('name', 'cuisine', 'hours', 'number', 'image')
+    list_display = ('restaurant_name', 'cuisine', 'hours', 'number', 'image')
 
     def save_model(self, request, obj, form, change):
         if not change:

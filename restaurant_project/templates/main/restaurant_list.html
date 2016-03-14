@@ -6,7 +6,7 @@
 <th>Hours</th><th>Phone Number</th>
 <th>Address</th>
 {% for restaurant in object_list %}
-<tr><td><a href="{% url 'restaurant_detail_view' restaurant.pk %}">{{ restaurant.name }}</a></td>
+<tr><td><a href="{% url 'restaurant_detail_view' restaurant.pk %}">{{ restaurant.restaurant_name }}</a></td>
   <td>{{ restaurant.cuisine }}</td>
   <td>{{ restaurant.hours }}</td>
   <td>{{ restaurant.number }}</td>

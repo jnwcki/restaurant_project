@@ -22,7 +22,7 @@ class SignupConsumer(CreateView):
                                   address=form.cleaned_data['address'],
                                   allergies=form.cleaned_data['allergies'])
         new_profile.save()
-        # new_user.save()
+        new_user.save()
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -41,7 +41,7 @@ class SignupManager(CreateView):
         new_user.last_name = form.cleaned_data['last_name']
         new_user.is_staff = True
         new_user.save()
-        new_restaurant = Restaurant(name=form.cleaned_data['name'])
+        new_restaurant = Restaurant(restaurant_name=form.cleaned_data['restaurant_name'])
         new_restaurant.save()
         new_profile = UserProfile(user=new_user, owner=new_restaurant)
         new_profile.save()

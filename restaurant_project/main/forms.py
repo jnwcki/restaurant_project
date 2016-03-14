@@ -15,5 +15,4 @@ class NewUserCreationForm(UserCreationForm):
 class NewManagerCreationForm(UserCreationForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
-    name = forms.CharField()
-
+    restaurant_name = forms.CharField()

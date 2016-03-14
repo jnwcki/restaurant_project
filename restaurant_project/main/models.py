@@ -23,7 +23,7 @@ class Menu(models.Model):
 
 
 class Restaurant(models.Model):
-    name = models.CharField(max_length=255)
+    restaurant_name = models.CharField(max_length=255)
     menu = models.ForeignKey(Menu, null=True)
     cuisine = models.CharField(max_length=255, null=True)
     hours = models.TextField(null=True)
