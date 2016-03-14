@@ -24,7 +24,6 @@ class Menu(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
-    owner = models.ForeignKey(User, null=True)
     menu = models.ForeignKey(Menu, null=True)
     cuisine = models.CharField(max_length=255, null=True)
     hours = models.TextField(null=True)
@@ -38,12 +37,15 @@ class Restaurant(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    owner = models.OneToOneField(Restaurant)
+    owner = models.ForeignKey(Restaurant, null=True)
     number = models.CharField(max_length=15, null=True)
     city = models.CharField(max_length=128, null=True)
     zip_code = models.IntegerField(null=True)
     address = models.CharField(max_length=255, null=True)
     allergies = models.CharField(max_length=512, null=True)
+
+    def __str(self):
+        return self.user
 
 
 class Order(models.Model):
