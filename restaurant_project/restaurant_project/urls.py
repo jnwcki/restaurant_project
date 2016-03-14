@@ -39,4 +39,5 @@ urlpatterns = [
     url(r'^signup/consumer/$', views.SignupConsumer.as_view(), name='signup'),
     url(r'^signup/manager/$', views.SignupManager.as_view(), name='signup_manager'),
     url(r'^media/(?P<path>.*)/$', serve, {'document_root': MEDIA_ROOT}),
+    url(r'^update_profile/(?P<pk>\d+)$', views.UserProfileUpdate.as_view(), name='update_profile_view'),
 ]
