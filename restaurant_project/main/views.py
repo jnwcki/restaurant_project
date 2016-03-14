@@ -16,11 +16,12 @@ class SignupConsumer(CreateView):
         new_user.user = new_user
         new_user.first_name = form.cleaned_data['first_name']
         new_user.last_name = form.cleaned_data['last_name']
-        new_profile = UserProfile.objects.create(user=new_user, number=form.cleaned_data['number'],
-                                                 city=form.cleaned_data['city'],
-                                                 zip_code=form.cleaned_data['zip_code'],
-                                                 address=form.cleaned_data['address'],
-                                                 allergies=form.cleaned_data['allergies'])
+        new_profile = UserProfile(user=new_user, number=form.cleaned_data['number'],
+                                  city=form.cleaned_data['city'],
+                                  zip_code=form.cleaned_data['zip_code'],
+                                  address=form.cleaned_data['address'],
+                                  allergies=form.cleaned_data['allergies'])
+        new_profile.save()
         new_user.save()
         return super().form_valid(form)
 
@@ -39,10 +40,15 @@ class SignupManager(CreateView):
         new_user.first_name = form.cleaned_data['first_name']
         new_user.last_name = form.cleaned_data['last_name']
         new_user.is_staff = True
-        new_restaurant = Restaurant.objects.create(name=form.cleaned_data['name'])
-        new_profile = UserProfile.objects.create(user=new_user)
         new_user.save()
+        new_restaurant = Restaurant(owner=new_user, name=form.cleaned_data['name'])
+        new_restaurant.save()
+        new_profile = UserProfile(user=new_user)
+        new_profile.save()
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('login')
 
 
 class RestaurantListView(ListView):

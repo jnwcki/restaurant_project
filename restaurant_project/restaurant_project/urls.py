@@ -18,7 +18,9 @@ from django.contrib import admin
 from main import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.views.static import serve
 
+from .settings import MEDIA_ROOT
 from main.views import MainView
 
 urlpatterns = [
@@ -36,4 +38,5 @@ urlpatterns = [
     url(r'^$', MainView.as_view(), name="main_view"),
     url(r'^signup/consumer/$', views.SignupConsumer.as_view(), name='signup'),
     url(r'^signup/manager/$', views.SignupManager.as_view(), name='signup_manager'),
+    url(r'^media/(?P<path>.*)/$', serve, {'document_root': MEDIA_ROOT}),
 ]

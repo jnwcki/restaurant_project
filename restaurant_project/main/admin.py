@@ -8,7 +8,13 @@ admin.site.register(UserProfile)
 
 @admin.register(Restaurant)
 class RestaurantAdmin(admin.ModelAdmin):
+    exclude = ('owner',)
     list_display = ('name', 'cuisine', 'hours', 'number', 'image')
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.owner = request.user
+        obj.save()
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
